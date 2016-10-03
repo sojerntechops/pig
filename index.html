@@ -1,0 +1,165 @@
+<!-- Version 2016-09-23 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	  h2 {
+	  	font-size: 14px;
+	  }
+		form {
+    	margin-top: 10px;
+    	margin-bottom: 10px;
+    	margin-right: 15px;
+    	margin-left: 8px;
+		}
+		table {
+  		border-spacing: 50px 0;
+		}
+		.questionMark {
+			position:relative;
+			height:26px; /*dimensions of our image*/
+			width:26px;
+			background: url('https://s30.postimg.org/8tia236u9/blackmagic_hotpixel_test.jpg') top left no-repeat;
+			}
+		.toolTip {
+			position:absolute;
+			top: -5px;
+  		left: 125%;  
+  		visibility:hidden;
+			/*left:26px; /*Moves it to the right beside the question mark*/
+			/*top:0;*/
+			/*display:none;*/
+			/*The attributes below make it look pretty*/
+			height:20px;
+			width:100px;
+			padding:5px;
+			border:1px solid #ffffff;
+			background-color:#eeeeee;
+			font:10px/12px Arial, Helvetica, sans-serif;
+		}
+	</style>
+	<center>
+		<h1>Pixel Implementation Guide (PIG) Creator</h1>
+		<br><br>
+	</center>
+</head>
+
+<body>
+	<script>
+	function beSpecificForm() {
+		console.log("BE value is " + document.getElementById('bookingEngine').value);
+	    switch(document.getElementById('bookingEngine').value){
+	    	case 'sabre':
+	    	  console.log("sabre chosen");
+		      document.getElementById('extraHpid').style.visibility = 'visible';
+		      document.getElementById('extrahp').style.visibility = 'hidden';
+		      document.getElementById('extraprod').style.visibility = 'hidden';
+		      document.getElementById('extratrack').style.visibility = 'hidden';
+		      document.getElementById('extrasearch').style.visibility = 'hidden';
+		      document.getElementById('extracart').style.visibility = 'hidden';
+		      document.getElementById('extraconv').style.visibility = 'hidden';
+		      break;
+		    case 'travlynx':
+		      console.log("travlynx chosen");
+		      document.getElementById('extraHpid').style.visibility = 'visible';
+	        document.getElementById('extrahp').style.visibility = 'hidden';
+		      document.getElementById('extraprod').style.visibility = 'hidden';
+		      document.getElementById('extratrack').style.visibility = 'hidden';
+		      document.getElementById('extrasearch').style.visibility = 'hidden';
+		      document.getElementById('extracart').style.visibility = 'hidden';
+		      document.getElementById('extraconv').style.visibility = 'hidden';
+		      break;
+		    case 'windsurfer':
+	    	  console.log("windsurfer chosen");
+	        document.getElementById('extraHpid').style.visibility = 'visible';
+	  	    document.getElementById('extrahp').style.visibility = 'hidden';
+		      document.getElementById('extraprod').style.visibility = 'hidden';
+		      document.getElementById('extratrack').style.visibility = 'hidden';
+		      document.getElementById('extrasearch').style.visibility = 'hidden';
+		      document.getElementById('extracart').style.visibility = 'hidden';
+		      document.getElementById('extraconv').style.visibility = 'hidden';
+		      break;
+	    	case 'iqroommaster':
+	    		console.log("iqroommaster chosen");
+	    		document.getElementById('extraHpid').style.visibility = 'hidden';
+	    		document.getElementById('extrahp').style.visibility = 'visible';
+		      document.getElementById('extraprod').style.visibility = 'visible';
+		      document.getElementById('extratrack').style.visibility = 'visible';
+		      document.getElementById('extrasearch').style.visibility = 'visible';
+		      document.getElementById('extracart').style.visibility = 'visible';
+		      document.getElementById('extraconv').style.visibility = 'visible';
+		      break;
+		    case 'blank':
+		      console.log("blank chosen");
+		      document.getElementById('extraHpid').style.visibility = 'hidden';
+	  	    document.getElementById('extrahp').style.visibility = 'hidden';
+		      document.getElementById('extraprod').style.visibility = 'hidden';
+		      document.getElementById('extratrack').style.visibility = 'hidden';
+		      document.getElementById('extrasearch').style.visibility = 'hidden';
+		      document.getElementById('extracart').style.visibility = 'hidden';
+		      document.getElementById('extraconv').style.visibility = 'hidden';
+		      break;
+	    }
+	}
+
+function validateForm(){
+	var propertyName, hpid, pt, hpPixelId, trackingPixelId, productPixelId, searchPixelId, shopcartPixelId, convPixelId;
+	/* VIEW - Display all on the page */
+	/* Title */
+	document.write("<center><h1>Pixel Implementation Guide for " + propertyName + "</h1></center>");
+	/* Pixel Type Blocks */
+}
+</script>
+
+<div id='main' style='border: 1px solid black; width:500px; margin:0 auto'>
+<form>
+AM/CC Name: <input type='text' name='AMCCName' required>
+<br>
+Property Name: <input type='text' name='propertyName' required>
+<br>
+Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpecificForm()'>
+  <option value='blank'></option>
+  <option value='sabre'>Sabre/Synxis</option>
+  <option value='travlynx'>TravLynx</option>
+  <option value='windsurfer'>WindsurferCRS</option>
+  <option value='iqroommaster'>Innquest Roommaster</option>
+</select>
+
+<!-- check which pixel types to add to guide -->
+<h2>Choose which pixel codes and instructions to add to the guide:</h2>
+<center><table>
+	<tr>
+		<td><input type='checkbox' name='checkHp' value='checkHp'>Homepage</td>
+		<td><input type='checkbox' name='checkSearch' value='checkSearch'>Search</td>
+	</tr>
+	<tr>
+		<td><input type='checkbox' name='checkProd' value='checkProd'>Product</td>
+		<td><input type='checkbox' name='checkShopCart' value='checkShopCart'>Shopping Cart</td>
+	</tr>
+	<tr>
+		<td><input type='checkbox' name='checkTrack' value='checkTrack'>Tracking</td>
+		<td><input type='checkbox' name='checkConv' value='checkConv'>Conversion</td>
+	</tr>
+</table></center>
+<!-- END pixel types to add to guide -->
+<!-- optional info dependant on BE -->
+<h2>Required information: </h2>
+<p>If any text boxes below are left blank, that pixel type will not be added to the guide.</p>
+<!-- <p>The Hotel Property ID is required for the homepage, product, and tracking pixels.</p>
+ --><div id='extraHpid' style='visibility:hidden'>Hotel Property ID (hpid): <input type='text' id='inputHpid' name 'inputHpid' placeholder='e.g. 12345'>
+<span id="tt1" class="toolTip"><img id='popupHpid' onmouseover="document.getElementById('tt1').style.visibility='visible'" onmouseout="document.getElementById('tt1').style.visibility='hidden'" class="questionMark">Required for homepage, product, and tracking pixels.</span></div>
+<div id='extrahp' style='visibility:hidden'>Sojern Homepage Pixel ID: <input type='text' id='hpPixelId' name='hpPixelId'></div>
+<div id='extratrack' style='visibility:hidden'>Sojern Tracking Pixel ID: <input type='text' id='trackingPixelId' name='trackingPixelId'></div>
+<div id='extraprod' style='visibility:hidden'>Sojern Product Pixel ID: <input type='text' id='productPixelId' name='productPixelId'></div>
+<div id='extrasearch' style='visibility:hidden'>Sojern Search Pixel ID: <input type='text' id='searchPixelId' name='searchPixelId'></div>
+<div id='extracart' style='visibility:hidden'>Sojern Shopping Cart Pixel ID: <input type='text' id='shopcartPixelId' name='shopcartPixelId'></div>
+<div id='extraconv' style='visibility:hidden'>Sojern Conversion Pixel ID: <input type='text' id='convPixelId' name='convPixelId'></div>
+<!-- end optional info depedent on BE -->
+<br>
+<!-- submit button -->
+<center><input type='submit' onsubmit='return validateForm()' method='post' value='Create Pixel Guide'></center>
+<!-- end submit button -->
+</form>
+</div>
+</body>
+</html>
