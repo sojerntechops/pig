@@ -49,7 +49,8 @@
 	function beSpecificForm() {
 		console.log("BE value is " + document.getElementById('bookingEngine').value);
 	    switch(document.getElementById('bookingEngine').value){
-	    	case 'sabre':
+	    	case 'Sabre':
+	    	  console.log("sabre");
 		      document.getElementById('extraHpid').style.visibility = 'visible';
 		      document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
@@ -58,7 +59,7 @@
 		      document.getElementById('extracart').style.visibility = 'hidden';
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
-		    case 'travlynx':
+		    case 'TravLynx':
 		      document.getElementById('extraHpid').style.visibility = 'visible';
 	          document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
@@ -67,7 +68,7 @@
 		      document.getElementById('extracart').style.visibility = 'hidden';
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
-		    case 'windsurfer':
+		    case 'WindsurferCRS':
 	          document.getElementById('extraHpid').style.visibility = 'visible';
 	  	      document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
@@ -76,7 +77,7 @@
 		      document.getElementById('extracart').style.visibility = 'hidden';
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
-	    	case 'iqroommaster':
+	    	case 'IQRoommaster':
 	    		document.getElementById('extraHpid').style.visibility = 'hidden';
 	    		document.getElementById('extrahp').style.visibility = 'visible';
 		      document.getElementById('extraprod').style.visibility = 'visible';
@@ -136,7 +137,8 @@ Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpec
 <p>If any text boxes below are left blank, that pixel type will not be added to the guide.</p>
 <!-- <p>The Hotel Property ID is required for the homepage, product, and tracking pixels.</p>
  --><div id='extraHpid' style='visibility:hidden'>Hotel Property ID (hpid): <input type='text' id='inputHpid' name='inputHpid' placeholder='e.g. 12345'>
-<span id="tt1" class="toolTip"><img id='popupHpid' onmouseover="document.getElementById('tt1').style.visibility='visible'" onmouseout="document.getElementById('tt1').style.visibility='hidden'" class="questionMark">Required for homepage, product, and tracking pixels.</span></div>
+<!-- <span id="tt1" class="toolTip"><img id='popupHpid' onmouseover="document.getElementById('tt1').style.visibility='visible'" onmouseout="document.getElementById('tt1').style.visibility='hidden'" class="questionMark">Required for homepage, product, and tracking pixels.</span> -->
+</div>
 <div id='extrahp' style='visibility:hidden'>Sojern Homepage Pixel ID: <input type='text' id='hpPixelId' name='hpPixelId'></div>
 <div id='extratrack' style='visibility:hidden'>Sojern Tracking Pixel ID: <input type='text' id='trackingPixelId' name='trackingPixelId'></div>
 <div id='extraprod' style='visibility:hidden'>Sojern Product Pixel ID: <input type='text' id='productPixelId' name='productPixelId'></div>
@@ -152,36 +154,21 @@ Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpec
 </div>
 <br><br>
 <!-- generated guide -->
-<center>
-<div id='result' align='center' style='width:670px'>
-</div>
-</center>
+<div id='result' style='width:670px'>
+	<code>
+		&lt;!-- Sojern Tag v6_js, Pixel Version: 23 --&gt;<br>&lt;script&gt;<br>  (function () {<br>    /* Please fill the following values. */<br>    var params = {<br>       hd1: "" /* Check In Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br>    };<br><br>    /* Please do not modify the below code. */<br>    var cid = [];<br>    var paramsArr = [];<br>    var cidParams = [];<br>    var pl = document.createElement("script");<br>    var defaultParams = {"vid":"hot","et":"hc"};<br>    for(key in defaultParams) { params[key] = defaultParams[key]; };<br>    for(key in cidParams) { cid.push(params[cidParams[key]]); };<br>    params.cid = cid.join("|");<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/p/9279?f_v=v6_js&amp;p_v=23&amp;" + paramsArr.join("&amp;");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br>&lt;/script&gt;<br>&lt;!-- End Sojern Tag --&gt;
+</code></div>
 <!-- END generated guide -->
 
 <script>
 function generateGuide(){
-var fillerId = '0000';
-var verticalAbbr = '';
-var eventTypeAbbr = '';
-var hpid = document.getElementById("inputHpid").value;
-var beName = document.getElementById("bookingEngine").value;
-var pt = '';
-var mpId = '';
-/* Building blocks to choose from */
-	/* Standard Pixel no params v6 */
-	var stdPixelNoParams = '<!-- Sojern Tag v6_js, Pixel Version: 1 --><br><script><br>(function () {<br>    /* Please fill the following values. */<br>    var params = {<br>    };<br><br>    /* Please do not modify the below code. */<br>    var cid = [];<br>    var paramsArr = [];<br>    var cidParams = [];<br>    var pl = document.createElement("script");<br>    var defaultParams = {"vid":"' + verticalAbbr + '","et":"'+ eventTypeAbbr +'"};<br>    for(key in defaultParams) { params[key] = defaultParams[key]; };<br>    for(key in cidParams) { cid.push(params[cidParams[key]]); };<br>    params.cid = cid.join("|");<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/p/' + fillerId + '?f_v=v6_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br></scr'+'ipt><br><!-- End Sojern Tag -->';
-	/* Website Hotel Master Pixel */
-	var mpWebsite = '<!-- Sojern ' + beName + ' Master Pixel Tag cp_v1_js, Pixel Version: 1 --><br><script><br>  (function () {<br>    /* Please fill the following values. */<br>    var params = {<br>      hpid: "' + hpid + '", /* Property ID */<br>      pt: "' + pt + '" /* Page Type - HOME_PAGE or PRODUCT or TRACKING */<br>    };<br><br>    /* Please do not modify the below code. */<br>    var paramsArr = [];<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br><br>    var pl = document.createElement("script");<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/cp/' + mpId + '?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br></scr'+'ipt><br><!-- End Sojern Tag -->';
-	/* Sabre MP */
-	var mpSabre = '<!-- Sojern Sabre Master Pixel Tag cp_v1_js, Pixel Version: 1 --><br>&lt;script&gt;<br> (function () {<br> /* Please fill the following values. */<br> var params = {<br> hpid: "%HOTEL_ID%", /* Property ID */<br> pt: "' + pt + '", /* Page Type - CONVERSION or SEARCH or SHOPPING_CART */<br> hd1: "%ArrivalDtYYYYMMDD%", /* Check In Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hd2: "%DepartDtYYYYMMDD%", /* Check Out Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hc1: "%HCity%", /* Destination City */<br> hs1: "%HState%", /* Destination State or Region */<br> hn1: "%HCountry%", /* Destination Country */<br> hb: "%ChainNm%", /* Hotel Brand */<br> hpr: "%HName%", /* Hotel Property */<br> hr: "%RmQty%", /* Number of Rooms */<br> hc: "%RoomName%", /* Room type */<br> t: "%GuestQty%", /* Number of Travelers */<br> hd: "%RoomNightsQty%", /* Length of Travel in Nights */<br> hp: "%TotalCost%", /* Purchase Price */<br> hcu: "%CurrCode%", /* Purchase Currency */<br> hconfno: "%ConfirmNo%", /* Confirmation Number */<br> hdc: "%PromoCode%", /* Discount Code */<br> l: "%LangCode%" /* Browser Language */<br> };<br> /* Please do not modify the below code. */<br> var paramsArr = [];<br> for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br> var pl = document.createElement("script");<br> pl.type = "text/javascript";<br> pl.async = true;<br> pl.src = "https://beacon.sojern.com/pixel/cp/11?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br> (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br> })();<br>&lt;/script&gt;<br><!-- End Sojern Tag -->';
-	/* TravLynx MP */
-	var mpTravlynx = '';
-	/* WindsurferCRS MP */
-	var mpWindsurfer = '';
-
-
-	var propertyName = document.getElementById("propertyName").value;
-	var hpPixelId, trackingPixelId, productPixelId, searchPixelId, cartPixelId, convPixelId;
+	var fillerId = '0000';
+	var verticalAbbr = '';
+	var eventTypeAbbr = '';
+	var hpid = document.getElementById("inputHpid").value;
+	var beName = document.getElementById("bookingEngine").value;
+	var pt = '';
+	var mpId = '';
 
 	switch(beName){ //if -1, the BE does not have a MP.
 	case 'Sabre':
@@ -195,6 +182,27 @@ var mpId = '';
 	default:
 		mpId = '0';
 	}
+/* Building blocks to choose from */
+	/* Standard Pixel no params v6 */
+	var stdPixelNoParams = '<!-- Sojern Tag v6_js, Pixel Version: 1 --><br><script><br>(function () {<br>    /* Please fill the following values. */<br>    var params = {<br>    };<br><br>    /* Please do not modify the below code. */<br>    var cid = [];<br>    var paramsArr = [];<br>    var cidParams = [];<br>    var pl = document.createElement("script");<br>    var defaultParams = {"vid":"' + verticalAbbr + '","et":"'+ eventTypeAbbr +'"};<br>    for(key in defaultParams) { params[key] = defaultParams[key]; };<br>    for(key in cidParams) { cid.push(params[cidParams[key]]); };<br>    params.cid = cid.join("|");<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/p/' + fillerId + '?f_v=v6_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br></scr'+'ipt><br><!-- End Sojern Tag -->';
+	/* Website Hotel Master Pixel */
+	var mpWebsitePart1 = '&lt;!-- Sojern ' + beName + ' Master Pixel Tag cp_v1_js, Pixel Version: 1 --&gt;<br>&lt;script&gt;<br>  (function () {<br>    /* Please fill the following values. */<br>    var params = {<br>      hpid: "' + hpid + '", /* Property ID */<br>      pt: "';
+	var mpWebsitePart2 = '" /* Page Type - HOME_PAGE or PRODUCT or TRACKING */<br>    };<br><br>    /* Please do not modify the below code. */<br>    var paramsArr = [];<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br><br>    var pl = document.createElement("script");<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/cp/' + mpId + '?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br>&lt;/script&gt;<br>&lt;!-- End Sojern Tag --&gt;';
+	/* Sabre MP */
+	var mp = {
+		Sabre: '&lt;!-- Sojern Sabre Master Pixel Tag cp_v1_js, Pixel Version: 1 --&gt;<br>&lt;script&gt;<br> (function () {<br> /* Please fill the following values. */<br> var params = {<br> hpid: "%HOTEL_ID%", /* Property ID */<br> pt: "', 
+		Sabre2: '", /* Page Type - CONVERSION or SEARCH or SHOPPING_CART */<br> hd1: "%ArrivalDtYYYYMMDD%", /* Check In Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hd2: "%DepartDtYYYYMMDD%", /* Check Out Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hc1: "%HCity%", /* Destination City */<br> hs1: "%HState%", /* Destination State or Region */<br> hn1: "%HCountry%", /* Destination Country */<br> hb: "%ChainNm%", /* Hotel Brand */<br> hpr: "%HName%", /* Hotel Property */<br> hr: "%RmQty%", /* Number of Rooms */<br> hc: "%RoomName%", /* Room type */<br> t: "%GuestQty%", /* Number of Travelers */<br> hd: "%RoomNightsQty%", /* Length of Travel in Nights */<br> hp: "%TotalCost%", /* Purchase Price */<br> hcu: "%CurrCode%", /* Purchase Currency */<br> hconfno: "%ConfirmNo%", /* Confirmation Number */<br> hdc: "%PromoCode%", /* Discount Code */<br> l: "%LangCode%" /* Browser Language */<br> };<br> /* Please do not modify the below code. */<br> var paramsArr = [];<br> for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br> var pl = document.createElement("script");<br> pl.type = "text/javascript";<br> pl.async = true;<br> pl.src = "https://beacon.sojern.com/pixel/cp/11?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br> (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br> })();<br>&lt;/script&gt;<br>&lt;!-- End Sojern Tag --&gt;',
+		TravLynx: '',
+		WindsurferCRS: ''
+	};
+	/* TravLynx MP */
+	var mpTravlynx = '';
+	/* WindsurferCRS MP */
+	var mpWindsurfer = '';
+
+
+	var propertyName = document.getElementById("propertyName").value;
+	var hpPixelId, trackingPixelId, productPixelId, searchPixelId, cartPixelId, convPixelId;
 
 	/* BEGIN VIEW - Display guide on the page */
 	document.getElementById('result').style.border="1px solid #000000";
@@ -206,40 +214,51 @@ var mpId = '';
 	/* Pixel Type Blocks */
 	//homepage pixel
 	if(document.getElementById("checkHp").checked){
-		pt = 'HOME_PAGE';
-		//document.getElementById('result').innerHTML += "<pre><code class='javascript'>" + mpWebsite + "</code></pre>";
-		var hpText = document.createTextNode(mpWebsite);
-		document.getElementById('result').appendChild(hpText);
+		if(hpid.length > 0){
+			pt = 'HOME_PAGE';
+			var hpTitle = "<h2>Homepage Pixel</h2>";
+			document.getElementById('result').innerHTML += hpTitle;
+			document.getElementById('result').innerHTML += '<pre><code>' + mpWebsitePart1 + pt + mpWebsitePart2 + '</code></pre>';
+		}else{ alert("Must add hpid"); }
 	}
 	//product pixel
 	if(document.getElementById("checkProd").checked){
-		pt = 'PRODUCT';
-		var prodTitle = "<h2>Product Pixel</h2>";
-		document.getElementById('result').innerHTML += prodTitle;
+		if(hpid.length > 0){
+			pt = 'PRODUCT';
+			var prodTitle = "<h2>Product Pixel</h2>";
+			document.getElementById('result').innerHTML += prodTitle;
+			document.getElementById('result').innerHTML += '<pre><code>' + mpWebsitePart1 + pt + mpWebsitePart2 + '</code></pre>';
+		}else{ alert("Must add hpid"); }
 	}
 	//tracking pixel
 	if(document.getElementById("checkTrack").checked){
-		pt = 'TRACKING';
-		var trackTitle = "<h2>Tracking Pixel</h2>";
-		document.getElementById('result').innerHTML += trackTitle;
+		if(hpid.length > 0){
+			pt = 'TRACKING';
+			var trackTitle = "<h2>Tracking Pixel</h2>";
+			document.getElementById('result').innerHTML += trackTitle;
+			document.getElementById('result').innerHTML += '<pre><code>' + mpWebsitePart1 + pt + mpWebsitePart2 + '</code></pre>';
+		}else{ alert("Must add hpid"); }
 	}
 	//search pixel
-	if(document.getElementById("checkSearch").checked){
+	if(document.getElementById("checkSearch").checked && mpId > 0 ){
 		pt = 'SEARCH';
 		var searchTitle = "<h2>Search Pixel</h2>";
 		document.getElementById('result').innerHTML += searchTitle;
+		document.getElementById('result').innerHTML += '<pre><code>' + mp[beName] + pt + mp[beName + '2'] + '</code></pre>';
 	}
 	//shopping cart pixel
-	if(document.getElementById("checkCart").checked){
+	if(document.getElementById("checkCart").checked && mpId > 0){
 		pt = 'SHOPPING_CART';
 		var cartTitle = "<h2>Shopping Cart Pixel</h2>";
 		document.getElementById('result').innerHTML += cartTitle;
+		document.getElementById('result').innerHTML += '<pre><code>' + mp[beName] + pt + mp[beName + '2'] + '</code></pre>';
 	}
 	//conversion pixel
-	if(document.getElementById("checkConv").checked){
+	if(document.getElementById("checkConv").checked && mpId > 0){
 		pt = 'CONVERSION';
 		var convTitle = "<h2>Conversion Pixel</h2>";
 		document.getElementById('result').innerHTML += convTitle;
+		document.getElementById('result').innerHTML += '<pre><code>' + mp[beName] + pt + mp[beName + '2'] + '</code></pre>';
 	}
 	/* END VIEW */
 }
