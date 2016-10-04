@@ -3,6 +3,12 @@
 <html>
 <head>
 	<style>
+	  #result{
+	  	margin-top: 10px;
+    	margin-bottom: 10px;
+    	margin-right: 15px;
+    	margin-left: 8px;
+	  }
 	  h2 {
 	  	font-size: 14px;
 	  }
@@ -154,10 +160,8 @@ Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpec
 </div>
 <br><br>
 <!-- generated guide -->
-<div id='result' style='width:670px'>
-	<code>
-		&lt;!-- Sojern Tag v6_js, Pixel Version: 23 --&gt;<br>&lt;script&gt;<br>  (function () {<br>    /* Please fill the following values. */<br>    var params = {<br>       hd1: "" /* Check In Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br>    };<br><br>    /* Please do not modify the below code. */<br>    var cid = [];<br>    var paramsArr = [];<br>    var cidParams = [];<br>    var pl = document.createElement("script");<br>    var defaultParams = {"vid":"hot","et":"hc"};<br>    for(key in defaultParams) { params[key] = defaultParams[key]; };<br>    for(key in cidParams) { cid.push(params[cidParams[key]]); };<br>    params.cid = cid.join("|");<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/p/9279?f_v=v6_js&amp;p_v=23&amp;" + paramsArr.join("&amp;");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br>&lt;/script&gt;<br>&lt;!-- End Sojern Tag --&gt;
-</code></div>
+<div id='result'>
+</div>
 <!-- END generated guide -->
 
 <script>
@@ -165,7 +169,7 @@ function generateGuide(){
 	var fillerId = '0000';
 	var verticalAbbr = '';
 	var eventTypeAbbr = '';
-	var hpid = document.getElementById("inputHpid").value;
+	var hpid = document.getElementById("inputHpid").value.replace(/\s/g, "");
 	var beName = document.getElementById("bookingEngine").value;
 	var pt = '';
 	var mpId = '';
