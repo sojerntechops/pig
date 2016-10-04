@@ -1,4 +1,4 @@
-<!-- Version 2016-09-23 -->
+<!-- Version 2016-10-03 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
 		}
 	</style>
 	<center>
-		<h1>Pixel Implementation Guide (PIG) Creator</h1>
+		<h1>Pixel Implementation Guide Generator (PIGG)</h1>
 		<br><br>
 	</center>
 </head>
@@ -50,7 +50,6 @@
 		console.log("BE value is " + document.getElementById('bookingEngine').value);
 	    switch(document.getElementById('bookingEngine').value){
 	    	case 'sabre':
-	    	  console.log("sabre chosen");
 		      document.getElementById('extraHpid').style.visibility = 'visible';
 		      document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
@@ -60,9 +59,8 @@
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
 		    case 'travlynx':
-		      console.log("travlynx chosen");
 		      document.getElementById('extraHpid').style.visibility = 'visible';
-	        document.getElementById('extrahp').style.visibility = 'hidden';
+	          document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
 		      document.getElementById('extratrack').style.visibility = 'hidden';
 		      document.getElementById('extrasearch').style.visibility = 'hidden';
@@ -70,9 +68,8 @@
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
 		    case 'windsurfer':
-	    	  console.log("windsurfer chosen");
-	        document.getElementById('extraHpid').style.visibility = 'visible';
-	  	    document.getElementById('extrahp').style.visibility = 'hidden';
+	          document.getElementById('extraHpid').style.visibility = 'visible';
+	  	      document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
 		      document.getElementById('extratrack').style.visibility = 'hidden';
 		      document.getElementById('extrasearch').style.visibility = 'hidden';
@@ -80,7 +77,6 @@
 		      document.getElementById('extraconv').style.visibility = 'hidden';
 		      break;
 	    	case 'iqroommaster':
-	    		console.log("iqroommaster chosen");
 	    		document.getElementById('extraHpid').style.visibility = 'hidden';
 	    		document.getElementById('extrahp').style.visibility = 'visible';
 		      document.getElementById('extraprod').style.visibility = 'visible';
@@ -92,7 +88,7 @@
 		    case 'blank':
 		      console.log("blank chosen");
 		      document.getElementById('extraHpid').style.visibility = 'hidden';
-	  	    document.getElementById('extrahp').style.visibility = 'hidden';
+	  	      document.getElementById('extrahp').style.visibility = 'hidden';
 		      document.getElementById('extraprod').style.visibility = 'hidden';
 		      document.getElementById('extratrack').style.visibility = 'hidden';
 		      document.getElementById('extrasearch').style.visibility = 'hidden';
@@ -101,44 +97,37 @@
 		      break;
 	    }
 	}
-
-function validateForm(){
-	var propertyName, hpid, pt, hpPixelId, trackingPixelId, productPixelId, searchPixelId, shopcartPixelId, convPixelId;
-	/* VIEW - Display all on the page */
-	/* Title */
-	document.write("<center><h1>Pixel Implementation Guide for " + propertyName + "</h1></center>");
-	/* Pixel Type Blocks */
-}
 </script>
 
 <div id='main' style='border: 1px solid black; width:500px; margin:0 auto'>
-<form>
-AM/CC Name: <input type='text' name='AMCCName' required>
+<!-- BEGIN form -->
+<form onsubmit='return false'>
+AM/CC Name: <input type='text' name='AMCCName'> <!-- require later -->
 <br>
-Property Name: <input type='text' name='propertyName' required>
+Property Name: <input type='text' id='propertyName' name='propertyName'><!-- require later -->
 <br>
 Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpecificForm()'>
   <option value='blank'></option>
-  <option value='sabre'>Sabre/Synxis</option>
-  <option value='travlynx'>TravLynx</option>
-  <option value='windsurfer'>WindsurferCRS</option>
-  <option value='iqroommaster'>Innquest Roommaster</option>
+  <option value='Sabre'>Sabre/Synxis</option>
+  <option value='TravLynx'>TravLynx</option>
+  <option value='WindsurferCRS'>WindsurferCRS</option>
+  <option value='IQRoommaster'>Innquest Roommaster</option>
 </select>
 
 <!-- check which pixel types to add to guide -->
 <h2>Choose which pixel codes and instructions to add to the guide:</h2>
 <center><table>
 	<tr>
-		<td><input type='checkbox' name='checkHp' value='checkHp'>Homepage</td>
-		<td><input type='checkbox' name='checkSearch' value='checkSearch'>Search</td>
+		<td><input type='checkbox' id='checkHp' name='checkHp' value='checkHp'>Homepage</td>
+		<td><input type='checkbox' id='checkSearch' name='checkSearch' value='checkSearch'>Search</td>
 	</tr>
 	<tr>
-		<td><input type='checkbox' name='checkProd' value='checkProd'>Product</td>
-		<td><input type='checkbox' name='checkShopCart' value='checkShopCart'>Shopping Cart</td>
+		<td><input type='checkbox' id='checkProd' name='checkProd' value='checkProd'>Product</td>
+		<td><input type='checkbox' id='checkCart' name='checkCart' value='checkShopCart'>Shopping Cart</td>
 	</tr>
 	<tr>
-		<td><input type='checkbox' name='checkTrack' value='checkTrack'>Tracking</td>
-		<td><input type='checkbox' name='checkConv' value='checkConv'>Conversion</td>
+		<td><input type='checkbox' id='checkTrack' name='checkTrack' value='checkTrack'>Tracking</td>
+		<td><input type='checkbox' id='checkConv' name='checkConv' value='checkConv'>Conversion</td>
 	</tr>
 </table></center>
 <!-- END pixel types to add to guide -->
@@ -146,7 +135,7 @@ Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpec
 <h2>Required information: </h2>
 <p>If any text boxes below are left blank, that pixel type will not be added to the guide.</p>
 <!-- <p>The Hotel Property ID is required for the homepage, product, and tracking pixels.</p>
- --><div id='extraHpid' style='visibility:hidden'>Hotel Property ID (hpid): <input type='text' id='inputHpid' name 'inputHpid' placeholder='e.g. 12345'>
+ --><div id='extraHpid' style='visibility:hidden'>Hotel Property ID (hpid): <input type='text' id='inputHpid' name='inputHpid' placeholder='e.g. 12345'>
 <span id="tt1" class="toolTip"><img id='popupHpid' onmouseover="document.getElementById('tt1').style.visibility='visible'" onmouseout="document.getElementById('tt1').style.visibility='hidden'" class="questionMark">Required for homepage, product, and tracking pixels.</span></div>
 <div id='extrahp' style='visibility:hidden'>Sojern Homepage Pixel ID: <input type='text' id='hpPixelId' name='hpPixelId'></div>
 <div id='extratrack' style='visibility:hidden'>Sojern Tracking Pixel ID: <input type='text' id='trackingPixelId' name='trackingPixelId'></div>
@@ -157,9 +146,93 @@ Booking Engine: <select id='bookingEngine' name='bookingEngine' onchange='beSpec
 <!-- end optional info depedent on BE -->
 <br>
 <!-- submit button -->
-<center><input type='submit' onsubmit='return validateForm()' method='post' value='Create Pixel Guide'></center>
+<center><input type='submit' onclick='generateGuide()' value='Create Pixel Guide'></center>
 <!-- end submit button -->
 </form>
 </div>
+<br><br>
+<!-- generated guide -->
+<center>
+<div id='result' align='center' style='width:670px'>
+</div>
+</center>
+<!-- END generated guide -->
+
+<script>
+function generateGuide(){
+var fillerId = '0000';
+var verticalAbbr = '';
+var eventTypeAbbr = '';
+var hpid = document.getElementById("inputHpid").value;
+var beName = document.getElementById("bookingEngine").value;
+var pt = '';
+var mpId = '';
+/* Building blocks to choose from */
+	/* Standard Pixel no params v6 */
+	var stdPixelNoParams = '<!-- Sojern Tag v6_js, Pixel Version: 1 --><br><script><br>(function () {<br>    /* Please fill the following values. */<br>    var params = {<br>    };<br><br>    /* Please do not modify the below code. */<br>    var cid = [];<br>    var paramsArr = [];<br>    var cidParams = [];<br>    var pl = document.createElement("script");<br>    var defaultParams = {"vid":"' + verticalAbbr + '","et":"'+ eventTypeAbbr +'"};<br>    for(key in defaultParams) { params[key] = defaultParams[key]; };<br>    for(key in cidParams) { cid.push(params[cidParams[key]]); };<br>    params.cid = cid.join("|");<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/p/' + fillerId + '?f_v=v6_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br></scr'+'ipt><br><!-- End Sojern Tag -->';
+	/* Website Hotel Master Pixel */
+	var mpWebsite = '<!-- Sojern ' + beName + ' Master Pixel Tag cp_v1_js, Pixel Version: 1 --><br><script><br>  (function () {<br>    /* Please fill the following values. */<br>    var params = {<br>      hpid: "' + hpid + '", /* Property ID */<br>      pt: "' + pt + '" /* Page Type - HOME_PAGE or PRODUCT or TRACKING */<br>    };<br><br>    /* Please do not modify the below code. */<br>    var paramsArr = [];<br>    for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br><br>    var pl = document.createElement("script");<br>    pl.type = "text/javascript";<br>    pl.async = true;<br>    pl.src = "https://beacon.sojern.com/pixel/cp/' + mpId + '?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br>    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br>  })();<br></scr'+'ipt><br><!-- End Sojern Tag -->';
+	/* Sabre MP */
+	var mpSabre = '<!-- Sojern Sabre Master Pixel Tag cp_v1_js, Pixel Version: 1 --><br>&lt;script&gt;<br> (function () {<br> /* Please fill the following values. */<br> var params = {<br> hpid: "%HOTEL_ID%", /* Property ID */<br> pt: "' + pt + '", /* Page Type - CONVERSION or SEARCH or SHOPPING_CART */<br> hd1: "%ArrivalDtYYYYMMDD%", /* Check In Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hd2: "%DepartDtYYYYMMDD%", /* Check Out Date. Format yyyy-mm-dd. Ex: 2015-02-14 */<br> hc1: "%HCity%", /* Destination City */<br> hs1: "%HState%", /* Destination State or Region */<br> hn1: "%HCountry%", /* Destination Country */<br> hb: "%ChainNm%", /* Hotel Brand */<br> hpr: "%HName%", /* Hotel Property */<br> hr: "%RmQty%", /* Number of Rooms */<br> hc: "%RoomName%", /* Room type */<br> t: "%GuestQty%", /* Number of Travelers */<br> hd: "%RoomNightsQty%", /* Length of Travel in Nights */<br> hp: "%TotalCost%", /* Purchase Price */<br> hcu: "%CurrCode%", /* Purchase Currency */<br> hconfno: "%ConfirmNo%", /* Confirmation Number */<br> hdc: "%PromoCode%", /* Discount Code */<br> l: "%LangCode%" /* Browser Language */<br> };<br> /* Please do not modify the below code. */<br> var paramsArr = [];<br> for(key in params) { paramsArr.push(key + "=" + encodeURIComponent(params[key])) };<br> var pl = document.createElement("script");<br> pl.type = "text/javascript";<br> pl.async = true;<br> pl.src = "https://beacon.sojern.com/pixel/cp/11?f_v=cp_v1_js&p_v=1&" + paramsArr.join("&");<br> (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(pl);<br> })();<br>&lt;/script&gt;<br><!-- End Sojern Tag -->';
+	/* TravLynx MP */
+	var mpTravlynx = '';
+	/* WindsurferCRS MP */
+	var mpWindsurfer = '';
+
+
+	var propertyName = document.getElementById("propertyName").value;
+	var hpPixelId, trackingPixelId, productPixelId, searchPixelId, cartPixelId, convPixelId;
+
+	switch(beName){ //if -1, the BE does not have a MP.
+	case 'Sabre':
+		mpId = '11'; break;
+	case 'TravLynx':
+		mpId = '20'; break;
+	case 'WindsurferCRS':
+		mpId = '21'; break;
+	case 'IQRoommaster':
+		mpId = '-1'; break;
+	default:
+		mpId = '0';
+	}
+
+	/* BEGIN VIEW - Display guide on the page */
+	document.getElementById('result').style.border="1px solid #000000";
+	document.getElementById('result').innerHTML = "<br>";
+	/* Sojern Logo */
+	document.getElementById('result').innerHTML += "<img src='images/sojern-logo.png' style='float:right;margin-right:15px;' >";
+	/* Title */
+	document.getElementById('result').innerHTML += "<center><h1>Pixel Implementation Guide - " + propertyName + "</h1></center>";
+	/* Pixel Type Blocks */
+	//homepage pixel
+	if(document.getElementById("checkHp").checked){
+		pt = 'HOME_PAGE';
+		//document.getElementById('result').innerHTML += "<pre><code class='javascript'>" + mpWebsite + "</code></pre>";
+		var hpText = document.createTextNode(mpWebsite);
+		document.getElementById('result').appendChild(hpText);
+	}
+	//product pixel
+	if(document.getElementById("checkProd").checked){
+		pt = 'PRODUCT';
+	}
+	//tracking pixel
+	if(document.getElementById("checkTrack").checked){
+		pt = 'TRACKING';
+	}
+	//search pixel
+	if(document.getElementById("checkSearch").checked){
+		pt = 'SEARCH';
+	}
+	//shopping cart pixel
+	if(document.getElementById("checkCart").checked){
+		pt = 'SHOPPING_CART';
+	}
+	//conversion pixel
+	if(document.getElementById("checkConv").checked){
+		pt = 'CONVERSION';
+	}
+	/* END VIEW */
+}
+</script>
 </body>
 </html>
