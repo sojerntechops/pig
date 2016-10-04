@@ -215,31 +215,31 @@ var mpId = '';
 	if(document.getElementById("checkProd").checked){
 		pt = 'PRODUCT';
 		var prodTitle = "<h2>Product Pixel</h2>";
-		document.getElementById('result') += prodTitle;
+		document.getElementById('result').innerHTML += prodTitle;
 	}
 	//tracking pixel
 	if(document.getElementById("checkTrack").checked){
 		pt = 'TRACKING';
 		var trackTitle = "<h2>Tracking Pixel</h2>";
-		document.getElementById('result') += trackTitle;
+		document.getElementById('result').innerHTML += trackTitle;
 	}
 	//search pixel
 	if(document.getElementById("checkSearch").checked){
 		pt = 'SEARCH';
 		var searchTitle = "<h2>Search Pixel</h2>";
-		document.getElementById('result') += searchTitle;
+		document.getElementById('result').innerHTML += searchTitle;
 	}
 	//shopping cart pixel
 	if(document.getElementById("checkCart").checked){
 		pt = 'SHOPPING_CART';
 		var cartTitle = "<h2>Shopping Cart Pixel</h2>";
-		document.getElementById('result') += cartTitle;
+		document.getElementById('result').innerHTML += cartTitle;
 	}
 	//conversion pixel
 	if(document.getElementById("checkConv").checked){
 		pt = 'CONVERSION';
 		var convTitle = "<h2>Conversion Pixel</h2>";
-		document.getElementById('result') += convTitle;
+		document.getElementById('result').innerHTML += convTitle;
 	}
 	/* END VIEW */
 }
